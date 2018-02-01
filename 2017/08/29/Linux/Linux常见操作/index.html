@@ -1,0 +1,1378 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="hongyangliao" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="注意事项：基于centos6  修改密码 passwd  passwd 作为普通用户和超级权限用户都可以运行，但作为普通用户只能更改自己的用户密码，但前提是没有被root用户锁定；如果root用户运行passwd ，可以设置或修改任何用户的密码 passwd 命令后面不接任何参数或用户名，则表示修改当前用户的密码 修改主机名 hostname    1.使用hostname修改主机名  host">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常见操作">
+<meta property="og:url" content="http://blog.hongyangliao.com/2017/08/29/Linux/Linux常见操作/index.html">
+<meta property="og:site_name" content="hongyangliao">
+<meta property="og:description" content="注意事项：基于centos6  修改密码 passwd  passwd 作为普通用户和超级权限用户都可以运行，但作为普通用户只能更改自己的用户密码，但前提是没有被root用户锁定；如果root用户运行passwd ，可以设置或修改任何用户的密码 passwd 命令后面不接任何参数或用户名，则表示修改当前用户的密码 修改主机名 hostname    1.使用hostname修改主机名  host">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-01T09:55:28.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常见操作">
+<meta name="twitter:description" content="注意事项：基于centos6  修改密码 passwd  passwd 作为普通用户和超级权限用户都可以运行，但作为普通用户只能更改自己的用户密码，但前提是没有被root用户锁定；如果root用户运行passwd ，可以设置或修改任何用户的密码 passwd 命令后面不接任何参数或用户名，则表示修改当前用户的密码 修改主机名 hostname    1.使用hostname修改主机名  host">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.hongyangliao.com/2017/08/29/Linux/Linux常见操作/"/>
+
+
+
+
+
+  <title>Linux常见操作 | hongyangliao</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hongyangliao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Welcome to My Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.hongyangliao.com/2017/08/29/Linux/Linux常见操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hongyangliao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hongyangliao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux常见操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T09:07:06+00:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/29/Linux/Linux常见操作/" class="leancloud_visitors" data-flag-title="Linux常见操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>注意事项：基于centos6</p>
+</blockquote>
+<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><blockquote>
+<p>passwd</p>
+</blockquote>
+<p>passwd 作为普通用户和超级权限用户都可以运行，但作为普通用户只能更改自己的用户密码，但前提是没有被root用户锁定；如果root用户运行passwd ，可以设置或修改任何用户的密码</p>
+<p>passwd 命令后面不接任何参数或用户名，则表示修改当前用户的密码</p>
+<h4 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h4><blockquote>
+<p>hostname</p>
+</blockquote>
+<p>  1.使用hostname修改主机名<br>  hostname hongyangliao-pc</p>
+<p>  2.修改/etc/sysconfig/network配置文件<br>  修改HOSTNAME=hongyangliao-pc</p>
+<p>  3.修改本机域名解析文件/etc/hosts<br>  将原来的主机名换为hongyangliao-pc</p>
+<h4 id="修改SSH端口"><a href="#修改SSH端口" class="headerlink" title="修改SSH端口"></a>修改SSH端口</h4><p>  1.修改SSH端口配置文件/etc/ssh/sshd_config,将Port的值换为想要的端口号</p>
+<p>  2.重启SSH服务，service sshd restart</p>
+<h4 id="iptabels配置"><a href="#iptabels配置" class="headerlink" title="iptabels配置"></a>iptabels配置</h4><p>  1.修改/etc/sysconfig/iptbles 文件<br>  <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">*filter</span><br><span class="line"><span class="comment"># Allow loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use the lo0 interface</span></span><br><span class="line">-A INPUT -i lo -j ACCEPT</span><br><span class="line">-A INPUT -i ! lo -d <span class="number">127.0</span>.<span class="number">0.0</span>/<span class="number">8</span> -j REJECT</span><br><span class="line"><span class="comment"># Accept established inbound connections</span></span><br><span class="line">-A INPUT -m <span class="keyword">state</span> --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"><span class="comment"># Allow all outbound traffic</span></span><br><span class="line">-A OUTPUT -j ACCEPT</span><br><span class="line"><span class="comment"># Allow HTTP and HTTPS connections</span></span><br><span class="line">-A INPUT -p tcp --dport <span class="number">80</span> -j ACCEPT</span><br><span class="line">-A INPUT -p tcp --dport <span class="number">443</span> -j ACCEPT</span><br><span class="line"><span class="comment"># Allow SSH/SFTP</span></span><br><span class="line"><span class="comment"># Change the value 22 if you are using a non-standard port</span></span><br><span class="line">-A INPUT -p tcp -m <span class="keyword">state</span> --state NEW --dport <span class="number">22</span> -j ACCEPT</span><br><span class="line"><span class="comment"># Allow FTP</span></span><br><span class="line"><span class="comment"># Purely optional, but required for WordPress to install its own plugins or update itself.</span></span><br><span class="line">-A INPUT -p tcp -m <span class="keyword">state</span> --state NEW --dport <span class="number">21</span> -j ACCEPT</span><br><span class="line"><span class="comment"># Allow PING</span></span><br><span class="line"><span class="comment"># Again, optional. Some disallow this altogether.</span></span><br><span class="line">-A INPUT -p icmp -m icmp --icmp-type <span class="number">8</span> -j ACCEPT</span><br><span class="line"><span class="comment"># Reject ALL other inbound</span></span><br><span class="line">-A INPUT -j REJECT</span><br><span class="line">-A FORWARD -j REJECT</span><br><span class="line">COMMIT</span><br></pre></td></tr></table></figure></p>
+<p>  2.保存<br>  <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service iptables save</span></span><br></pre></td></tr></table></figure></p>
+<p>  3.重启<br>  <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service iptables restart</span></span><br></pre></td></tr></table></figure></p>
+<p>  4.添加到自启动<br>  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig iptables <span class="keyword">on</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="ssh-scp-免密码登录"><a href="#ssh-scp-免密码登录" class="headerlink" title="ssh scp 免密码登录"></a>ssh scp 免密码登录</h4><p>  1.本机创建公钥、密钥<br>  ssh-keygen -t rsa<br>  一路回车到底</p>
+<p>  2.把公钥id_rsa.pub复制到远程服务器上~/.ssh目录并命名为authorized_keys</p>
+<h4 id="远程复制scp"><a href="#远程复制scp" class="headerlink" title="远程复制scp"></a>远程复制scp</h4><p>  1.从本地复制到远程服务器<br>  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># scp local_file remote_username<span class="doctag">@remote</span>_ip:remote_folder</span></span><br></pre></td></tr></table></figure></p>
+<p>  2.从远程服务器复制到本地<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="variable">$scp</span> remote_username@remote_ip:remote_file local_folder</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><p>  1.修改ip地址<br>  修改对应网卡的ip地址<br>  <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim <span class="regexp">/etc/</span>sysconfig<span class="regexp">/network-scripts/i</span>fcfg-eth0</span><br></pre></td></tr></table></figure></p>
+<p>  修改以下内容<br>  <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0 <span class="comment">#描述网卡对应的设备别名，例如ifcfg-eth0的文件中它为eth0</span></span><br><span class="line">BOOTPROTO=static <span class="comment">#设置网卡获得ip地址的方式，可能的选项为static，dhcp或bootp，分别对应静态指定的 ip地址，通过dhcp协议获得的ip地址，通过bootp协议获得的ip地址</span></span><br><span class="line">BROADCAST=192.168.0.255 <span class="comment">#对应的子网广播地址</span></span><br><span class="line">HWADDR=00:07:E9:05:E8:B4 <span class="comment">#对应的网卡物理地址</span></span><br><span class="line">IPADDR=12.168.1.2 <span class="comment">#如果设置网卡获得 ip地址的方式为静态指定，此字段就指定了网卡对应的ip地址</span></span><br><span class="line">IPV6INIT=no</span><br><span class="line">IPV6_AUTOCONF=no</span><br><span class="line">NETMASK=255.255.255.0 <span class="comment">#网卡对应的网络掩码</span></span><br><span class="line">NETWORK=192.168.1.0 <span class="comment">#网卡对应的网络地址</span></span><br><span class="line">ONBOOT=yes <span class="comment">#系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备</span></span><br></pre></td></tr></table></figure></p>
+<p>  2.修改网关<br>  修改对应网卡的网关<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/sysconfig/network</span></span><br></pre></td></tr></table></figure></p>
+<p>  修改以下内容<br>  <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">NETWORKING</span>=<span class="literal">yes</span> #表示系统是否使用网络，一般设置为<span class="literal">yes</span>。如果设为<span class="literal">no</span>，则不能使用网络，而且很多系统服务程序将无法启动</span><br><span class="line"><span class="attr">HOSTNAME</span>=centos #设置本机的主机名，这里设置的主机名要和/etc/hosts中设置的主机名对应</span><br><span class="line"><span class="attr">GATEWAY</span>=<span class="number">192.168</span>.<span class="number">1.1</span> #设置本机连接的网关的IP地址。例如，网关为<span class="number">10.0</span>.<span class="number">0.2</span></span><br></pre></td></tr></table></figure></p>
+<p>  3.修改DNS<br>  修改对应网卡的DNS<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/resolv.conf</span></span><br></pre></td></tr></table></figure></p>
+<p>  修改以下内容<br>  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nameserver</span> 8<span class="selector-class">.8</span><span class="selector-class">.8</span><span class="selector-class">.8</span> <span class="selector-id">#google</span>域名服务器</span><br><span class="line"><span class="selector-tag">nameserver</span> 8<span class="selector-class">.8</span><span class="selector-class">.4</span><span class="selector-class">.4</span> <span class="selector-id">#google</span>域名服务器</span><br></pre></td></tr></table></figure></p>
+<p>  4.重启网卡<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">  /etc/init.d/network restart</span></span><br></pre></td></tr></table></figure></p>
+<p>  5.简单设置(推荐)<br>  修改对应网卡的网关<br>  <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim <span class="regexp">/etc/</span>sysconfig<span class="regexp">/network-scripts/i</span>fcfg-eth0</span><br></pre></td></tr></table></figure></p>
+<p>  修改以下内容<br>  <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BOOTPROTO=static <span class="comment">#静态指定ip</span></span><br><span class="line">ONBOOT=yes <span class="comment">#系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备</span></span><br><span class="line">IPADDR=192.168.149.10 <span class="comment">#ip地址</span></span><br><span class="line">NETMASK=255.255.255.0 <span class="comment">#子网掩码</span></span><br><span class="line">GATEWAY=192.168.149.2 <span class="comment">#网关</span></span><br><span class="line">DNS1=8.8.8.8 <span class="comment">#DNS</span></span><br><span class="line">DNS2=4.4.4.4</span><br><span class="line">IPV6INIT=no</span><br><span class="line">DEVICE=eth0 <span class="comment">#描述网卡对应的设备别名，例如ifcfg-eth0的文件中它为eth0</span></span><br></pre></td></tr></table></figure></p>
+<p>  重启网卡<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">  /etc/init.d/network restart</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h4><p>  1.停止并卸载系统自带的httpd服务<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> service httpd stop</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ps -ef | grep httpd</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">kill</span> -9 pid号（逐个删除）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -qa |grep httpd</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -e httpd软件包</span></span><br></pre></td></tr></table></figure></p>
+<p>  2.安装Apache<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget http://mirrors.hust.edu.cn/apache//httpd/httpd-2.2.34.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -zxvf httpd-2.2.34.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>  3.编译<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ./configure --prefix=/usr/<span class="built_in">local</span>/apache</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure></p>
+<p>  4.启动、停止、重启<br>  启动Apache：/usr/local/apache2/bin/apachectl start<br>  停止Apache：/usr/local/apache2/bin/apachectl stop<br>  重启Apache：/usr/local/apache2/bin/apachectl restart</p>
+<p>  5.网站放置目录<br>  网站放在/usr/local/apache/htdocs</p>
+<h4 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h4><p>  1.安装依赖文件(不安装的话，自己会安装很多东西)<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum groupinstall <span class="string">"Development tools"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum install libxml2-devel gd-devel libmcrypt-devel libcurl-devel openssl-devel</span></span><br></pre></td></tr></table></figure></p>
+<p>  2.安装php<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget http://php.net/get/php-5.5.38.tar.gz/from/this/mirror</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -zxvf php-5.5.38.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>  3.编译<br>  <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span> <span class="string">.</span><span class="comment">/configure</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">prefix=/usr/local/php</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">apxs2=/usr/local/apache/bin/apxs</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">disable</span><span class="literal">-</span><span class="comment">cli</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">shared</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">libxml</span><span class="literal">-</span><span class="comment">dir</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">gd</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">openssl</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">mbstring</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">mysqli</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">mysql</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">opcache</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">mysqlnd</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">zip</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">fpm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">fastcgi</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">zlib</span><span class="literal">-</span><span class="comment">dir</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">pdo</span><span class="literal">-</span><span class="comment">mysql</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">jpeg</span><span class="literal">-</span><span class="comment">dir</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">freetype</span><span class="literal">-</span><span class="comment">dir</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">curl</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">without</span><span class="literal">-</span><span class="comment">pdo</span><span class="literal">-</span><span class="comment">sqlite</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">without</span><span class="literal">-</span><span class="comment">sqlite3</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">mcrypt=/usr/local/libmcrypt/</span></span><br><span class="line"><span class="comment">#</span> <span class="comment">make</span> <span class="comment">&amp;&amp;</span> <span class="comment">make</span> <span class="comment">install</span></span><br></pre></td></tr></table></figure></p>
+<p>  4.注意事项<br>  如果出现 configure: error: mcrypt.h not found. Please reinstall libmcrypt<br>  则需安装libmcrypt<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/attic/libmcrypt/libmcrypt-2.5.7.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -zxvf libmcrypt-2.5.7.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> libmcrypt-2.5.7</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ./configure prefix=/usr/<span class="built_in">local</span>/libmcrypt/</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure></p>
+<p>  5.配置Apache中的PHP环境<br>  修改Apache的配置文件httpd.conf<br>  在LoadModule中添加：<br>  <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php5_module modules/libphp5.so</span><br></pre></td></tr></table></figure></p>
+<p>  在AddType application/x-gzip .gz .tgz下面添加：<br>  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AddType <span class="built_in">application</span>/x-httpd-php .php</span><br><span class="line">AddType <span class="built_in">application</span>/x-httpd-php-source .phps</span><br></pre></td></tr></table></figure></p>
+<p>  在DirectoryIndex增加 index.php，以便Apache识别PHP格式的index<br>  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule dir_module&gt;  </span><br><span class="line">  DirectoryIndex index<span class="selector-class">.html</span> index<span class="selector-class">.php</span>  </span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  6.验证PHP环境<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /usr/<span class="built_in">local</span>/apache/htdocs/info.php</span></span><br></pre></td></tr></table></figure></p>
+<p>  添加如下代码<br>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">phpinfo();</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>  访问 <a href="http://locahost/info.php" target="_blank" rel="noopener">http://locahost/info.php</a> 可查看很多信息</p>
+<h4 id="安转rar"><a href="#安转rar" class="headerlink" title="安转rar"></a>安转rar</h4><pre><code>1.安装依赖库
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install -y gcc gcc-c++ autoconf wget</span></span><br></pre></td></tr></table></figure>
+
+2.下载源码包
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># wget http:<span class="comment">//www.rarlab.com/rar/rarlinux-x64-5.3.0.tar.gz</span></span></span><br></pre></td></tr></table></figure>
+
+3.解压编译
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf rarlinux-x64-<span class="number">5.3</span>.<span class="number">0</span>.tar.gz</span><br><span class="line"><span class="keyword">cd</span> rar</span><br><span class="line"><span class="keyword">make</span> &amp;&amp; <span class="keyword">make</span> install</span><br><span class="line"><span class="keyword">cp</span> -<span class="keyword">f</span> rar_static /usr/local/bin/rar &amp;&amp; <span class="keyword">cp</span> -<span class="keyword">f</span> rar_static /usr/local/bin/unrar</span><br><span class="line"><span class="keyword">cd</span> ..</span><br><span class="line">rm -rf rar</span><br></pre></td></tr></table></figure>
+
+4.使用
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">解压：rar x filename.rar</span><br><span class="line">压缩：rar <span class="selector-tag">a</span> targetName<span class="selector-class">.rar</span> dirName</span><br></pre></td></tr></table></figure>
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="hongyangliao wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/mysql/mysql导出数据库、表/" rel="next" title="mysql导出、导入">
+                <i class="fa fa-chevron-left"></i> mysql导出、导入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/30/Tomcat/tomcat用户配置/" rel="prev" title="tomcat用户配置">
+                tomcat用户配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  <div id="gitment_container"></div>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="hongyangliao" />
+          <p class="site-author-name" itemprop="name">hongyangliao</p>
+           
+              <p class="site-description motion-element" itemprop="description">For man is man and master of his fate.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hongyangliao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://gitee.com/hongyangliao" target="_blank" title="Gitee">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Gitee
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.google.com" title="Google" target="_blank">Google</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/" title="GitHub" target="_blank">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://stackoverflow.com/" title="Stack Overflow" target="_blank">Stack Overflow</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改密码"><span class="nav-number">1.</span> <span class="nav-text">修改密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改主机名"><span class="nav-number">2.</span> <span class="nav-text">修改主机名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改SSH端口"><span class="nav-number">3.</span> <span class="nav-text">修改SSH端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iptabels配置"><span class="nav-number">4.</span> <span class="nav-text">iptabels配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh-scp-免密码登录"><span class="nav-number">5.</span> <span class="nav-text">ssh scp 免密码登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程复制scp"><span class="nav-number">6.</span> <span class="nav-text">远程复制scp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络设置"><span class="nav-number">7.</span> <span class="nav-text">网络设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Apache"><span class="nav-number">8.</span> <span class="nav-text">安装Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装php"><span class="nav-number">9.</span> <span class="nav-text">安装php</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安转rar"><span class="nav-number">10.</span> <span class="nav-text">安转rar</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hongyangliao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+	
+		
+		
+		
+		<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+		<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+		<script>
+			var gitment = new Gitment({
+			  //id: 'ҳ�� ID',
+			  owner: 'hongyangliao',
+			  repo: 'hongyangliao.github.io',
+			  oauth: {
+				client_id: '0422264422ac3c179677',
+				client_secret: '69239fb7f1a9464eec187cda039d316c42e5e93c'
+			  }
+			});
+			gitment.render('gitment_container');
+		</script>
+	
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("B73vPiAFOqq1HDOSsSIy82SO-gzGzoHsz", "CQV33bsPeDoEbbD0zosQMqV1");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
