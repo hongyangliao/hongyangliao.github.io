@@ -321,6 +321,210 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.hongyangliao.com/2017/08/29/Linux/Linux常见操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hongyangliao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hongyangliao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/29/Linux/Linux常见操作/" itemprop="url">Linux常见操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T17:07:06+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/29/Linux/Linux常见操作/" class="leancloud_visitors" data-flag-title="Linux常见操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>注意事项：基于centos6</p>
+</blockquote>
+<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><blockquote>
+<p>passwd</p>
+</blockquote>
+<p>passwd 作为普通用户和超级权限用户都可以运行，但作为普通用户只能更改自己的用户密码，但前提是没有被root用户锁定；如果root用户运行passwd ，可以设置或修改任何用户的密码</p>
+<p>passwd 命令后面不接任何参数或用户名，则表示修改当前用户的密码</p>
+<h4 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h4><blockquote>
+<p>hostname</p>
+</blockquote>
+<p>  1.使用hostname修改主机名<br>  hostname hongyangliao-pc</p>
+<p>  2.修改/etc/sysconfig/network配置文件<br>  修改HOSTNAME=hongyangliao-pc</p>
+<p>  3.修改本机域名解析文件/etc/hosts<br>  将原来的主机名换为hongyangliao-pc</p>
+<h4 id="修改SSH端口"><a href="#修改SSH端口" class="headerlink" title="修改SSH端口"></a>修改SSH端口</h4><p>  1.修改SSH端口配置文件/etc/ssh/sshd_config,将Port的值换为想要的端口号</p>
+<p>  2.重启SSH服务，service sshd restart</p>
+<h4 id="iptabels配置"><a href="#iptabels配置" class="headerlink" title="iptabels配置"></a>iptabels配置</h4><p>  1.修改/etc/sysconfig/iptbles 文件<br>  <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">*filter</span><br><span class="line"><span class="comment"># Allow loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use the lo0 interface</span></span><br><span class="line">-A INPUT -i lo -j ACCEPT</span><br><span class="line">-A INPUT -i ! lo -d <span class="number">127.0</span>.<span class="number">0.0</span>/<span class="number">8</span> -j REJECT</span><br><span class="line"><span class="comment"># Accept established inbound connections</span></span><br><span class="line">-A INPUT -m <span class="keyword">state</span> --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"><span class="comment"># Allow all outbound traffic</span></span><br><span class="line">-A OUTPUT -j ACCEPT</span><br><span class="line"><span class="comment"># Allow HTTP and HTTPS connections</span></span><br><span class="line">-A INPUT -p tcp --dport <span class="number">80</span> -j ACCEPT</span><br><span class="line">-A INPUT -p tcp --dport <span class="number">443</span> -j ACCEPT</span><br><span class="line"><span class="comment"># Allow SSH/SFTP</span></span><br><span class="line"><span class="comment"># Change the value 22 if you are using a non-standard port</span></span><br><span class="line">-A INPUT -p tcp -m <span class="keyword">state</span> --state NEW --dport <span class="number">22</span> -j ACCEPT</span><br><span class="line"><span class="comment"># Allow FTP</span></span><br><span class="line"><span class="comment"># Purely optional, but required for WordPress to install its own plugins or update itself.</span></span><br><span class="line">-A INPUT -p tcp -m <span class="keyword">state</span> --state NEW --dport <span class="number">21</span> -j ACCEPT</span><br><span class="line"><span class="comment"># Allow PING</span></span><br><span class="line"><span class="comment"># Again, optional. Some disallow this altogether.</span></span><br><span class="line">-A INPUT -p icmp -m icmp --icmp-type <span class="number">8</span> -j ACCEPT</span><br><span class="line"><span class="comment"># Reject ALL other inbound</span></span><br><span class="line">-A INPUT -j REJECT</span><br><span class="line">-A FORWARD -j REJECT</span><br><span class="line">COMMIT</span><br></pre></td></tr></table></figure></p>
+<p>  2.保存<br>  <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service iptables save</span></span><br></pre></td></tr></table></figure></p>
+<p>  3.重启<br>  <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service iptables restart</span></span><br></pre></td></tr></table></figure></p>
+<p>  4.添加到自启动<br>  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig iptables <span class="keyword">on</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="ssh-scp-免密码登录"><a href="#ssh-scp-免密码登录" class="headerlink" title="ssh scp 免密码登录"></a>ssh scp 免密码登录</h4><p>  1.本机创建公钥、密钥<br>  ssh-keygen -t rsa<br>  一路回车到底</p>
+<p>  2.把公钥id_rsa.pub复制到远程服务器上~/.ssh目录并命名为authorized_keys</p>
+<h4 id="远程复制scp"><a href="#远程复制scp" class="headerlink" title="远程复制scp"></a>远程复制scp</h4><p>  1.从本地复制到远程服务器<br>  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># scp local_file remote_username<span class="doctag">@remote</span>_ip:remote_folder</span></span><br></pre></td></tr></table></figure></p>
+<p>  2.从远程服务器复制到本地<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="variable">$scp</span> remote_username@remote_ip:remote_file local_folder</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><p>  1.修改ip地址<br>  修改对应网卡的ip地址<br>  <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim <span class="regexp">/etc/</span>sysconfig<span class="regexp">/network-scripts/i</span>fcfg-eth0</span><br></pre></td></tr></table></figure></p>
+<p>  修改以下内容<br>  <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0 <span class="comment">#描述网卡对应的设备别名，例如ifcfg-eth0的文件中它为eth0</span></span><br><span class="line">BOOTPROTO=static <span class="comment">#设置网卡获得ip地址的方式，可能的选项为static，dhcp或bootp，分别对应静态指定的 ip地址，通过dhcp协议获得的ip地址，通过bootp协议获得的ip地址</span></span><br><span class="line">BROADCAST=192.168.0.255 <span class="comment">#对应的子网广播地址</span></span><br><span class="line">HWADDR=00:07:E9:05:E8:B4 <span class="comment">#对应的网卡物理地址</span></span><br><span class="line">IPADDR=12.168.1.2 <span class="comment">#如果设置网卡获得 ip地址的方式为静态指定，此字段就指定了网卡对应的ip地址</span></span><br><span class="line">IPV6INIT=no</span><br><span class="line">IPV6_AUTOCONF=no</span><br><span class="line">NETMASK=255.255.255.0 <span class="comment">#网卡对应的网络掩码</span></span><br><span class="line">NETWORK=192.168.1.0 <span class="comment">#网卡对应的网络地址</span></span><br><span class="line">ONBOOT=yes <span class="comment">#系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备</span></span><br></pre></td></tr></table></figure></p>
+<p>  2.修改网关<br>  修改对应网卡的网关<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/sysconfig/network</span></span><br></pre></td></tr></table></figure></p>
+<p>  修改以下内容<br>  <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">NETWORKING</span>=<span class="literal">yes</span> #表示系统是否使用网络，一般设置为<span class="literal">yes</span>。如果设为<span class="literal">no</span>，则不能使用网络，而且很多系统服务程序将无法启动</span><br><span class="line"><span class="attr">HOSTNAME</span>=centos #设置本机的主机名，这里设置的主机名要和/etc/hosts中设置的主机名对应</span><br><span class="line"><span class="attr">GATEWAY</span>=<span class="number">192.168</span>.<span class="number">1.1</span> #设置本机连接的网关的IP地址。例如，网关为<span class="number">10.0</span>.<span class="number">0.2</span></span><br></pre></td></tr></table></figure></p>
+<p>  3.修改DNS<br>  修改对应网卡的DNS<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/resolv.conf</span></span><br></pre></td></tr></table></figure></p>
+<p>  修改以下内容<br>  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nameserver</span> 8<span class="selector-class">.8</span><span class="selector-class">.8</span><span class="selector-class">.8</span> <span class="selector-id">#google</span>域名服务器</span><br><span class="line"><span class="selector-tag">nameserver</span> 8<span class="selector-class">.8</span><span class="selector-class">.4</span><span class="selector-class">.4</span> <span class="selector-id">#google</span>域名服务器</span><br></pre></td></tr></table></figure></p>
+<p>  4.重启网卡<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">  /etc/init.d/network restart</span></span><br></pre></td></tr></table></figure></p>
+<p>  5.简单设置(推荐)<br>  修改对应网卡的网关<br>  <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim <span class="regexp">/etc/</span>sysconfig<span class="regexp">/network-scripts/i</span>fcfg-eth0</span><br></pre></td></tr></table></figure></p>
+<p>  修改以下内容<br>  <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BOOTPROTO=static <span class="comment">#静态指定ip</span></span><br><span class="line">ONBOOT=yes <span class="comment">#系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备</span></span><br><span class="line">IPADDR=192.168.149.10 <span class="comment">#ip地址</span></span><br><span class="line">NETMASK=255.255.255.0 <span class="comment">#子网掩码</span></span><br><span class="line">GATEWAY=192.168.149.2 <span class="comment">#网关</span></span><br><span class="line">DNS1=8.8.8.8 <span class="comment">#DNS</span></span><br><span class="line">DNS2=4.4.4.4</span><br><span class="line">IPV6INIT=no</span><br><span class="line">DEVICE=eth0 <span class="comment">#描述网卡对应的设备别名，例如ifcfg-eth0的文件中它为eth0</span></span><br></pre></td></tr></table></figure></p>
+<p>  重启网卡<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">  /etc/init.d/network restart</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h4><p>  1.停止并卸载系统自带的httpd服务<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> service httpd stop</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ps -ef | grep httpd</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">kill</span> -9 pid号（逐个删除）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -qa |grep httpd</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -e httpd软件包</span></span><br></pre></td></tr></table></figure></p>
+<p>  2.安装Apache<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget http://mirrors.hust.edu.cn/apache//httpd/httpd-2.2.34.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -zxvf httpd-2.2.34.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>  3.编译<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ./configure --prefix=/usr/<span class="built_in">local</span>/apache</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure></p>
+<p>  4.启动、停止、重启<br>  启动Apache：/usr/local/apache2/bin/apachectl start<br>  停止Apache：/usr/local/apache2/bin/apachectl stop<br>  重启Apache：/usr/local/apache2/bin/apachectl restart</p>
+<p>  5.网站放置目录<br>  网站放在/usr/local/apache/htdocs</p>
+<h4 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h4><p>  1.安装依赖文件(不安装的话，自己会安装很多东西)<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum groupinstall <span class="string">"Development tools"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum install libxml2-devel gd-devel libmcrypt-devel libcurl-devel openssl-devel</span></span><br></pre></td></tr></table></figure></p>
+<p>  2.安装php<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget http://php.net/get/php-5.5.38.tar.gz/from/this/mirror</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -zxvf php-5.5.38.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>  3.编译<br>  <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span> <span class="string">.</span><span class="comment">/configure</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">prefix=/usr/local/php</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">apxs2=/usr/local/apache/bin/apxs</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">disable</span><span class="literal">-</span><span class="comment">cli</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">shared</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">libxml</span><span class="literal">-</span><span class="comment">dir</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">gd</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">openssl</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">mbstring</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">mysqli</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">mysql</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">opcache</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">mysqlnd</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">zip</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">fpm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">enable</span><span class="literal">-</span><span class="comment">fastcgi</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">zlib</span><span class="literal">-</span><span class="comment">dir</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">pdo</span><span class="literal">-</span><span class="comment">mysql</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">jpeg</span><span class="literal">-</span><span class="comment">dir</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">freetype</span><span class="literal">-</span><span class="comment">dir</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">curl</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">without</span><span class="literal">-</span><span class="comment">pdo</span><span class="literal">-</span><span class="comment">sqlite</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">without</span><span class="literal">-</span><span class="comment">sqlite3</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">with</span><span class="literal">-</span><span class="comment">mcrypt=/usr/local/libmcrypt/</span></span><br><span class="line"><span class="comment">#</span> <span class="comment">make</span> <span class="comment">&amp;&amp;</span> <span class="comment">make</span> <span class="comment">install</span></span><br></pre></td></tr></table></figure></p>
+<p>  4.注意事项<br>  如果出现 configure: error: mcrypt.h not found. Please reinstall libmcrypt<br>  则需安装libmcrypt<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/attic/libmcrypt/libmcrypt-2.5.7.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -zxvf libmcrypt-2.5.7.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> libmcrypt-2.5.7</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ./configure prefix=/usr/<span class="built_in">local</span>/libmcrypt/</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure></p>
+<p>  5.配置Apache中的PHP环境<br>  修改Apache的配置文件httpd.conf<br>  在LoadModule中添加：<br>  <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php5_module modules/libphp5.so</span><br></pre></td></tr></table></figure></p>
+<p>  在AddType application/x-gzip .gz .tgz下面添加：<br>  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AddType <span class="built_in">application</span>/x-httpd-php .php</span><br><span class="line">AddType <span class="built_in">application</span>/x-httpd-php-source .phps</span><br></pre></td></tr></table></figure></p>
+<p>  在DirectoryIndex增加 index.php，以便Apache识别PHP格式的index<br>  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule dir_module&gt;  </span><br><span class="line">  DirectoryIndex index<span class="selector-class">.html</span> index<span class="selector-class">.php</span>  </span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  6.验证PHP环境<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /usr/<span class="built_in">local</span>/apache/htdocs/info.php</span></span><br></pre></td></tr></table></figure></p>
+<p>  添加如下代码<br>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">phpinfo();</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>  访问 <a href="http://locahost/info.php" target="_blank" rel="noopener">http://locahost/info.php</a> 可查看很多信息</p>
+<h4 id="安转rar"><a href="#安转rar" class="headerlink" title="安转rar"></a>安转rar</h4><pre><code>1.安装依赖库
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install -y gcc gcc-c++ autoconf wget</span></span><br></pre></td></tr></table></figure>
+
+2.下载源码包
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># wget http:<span class="comment">//www.rarlab.com/rar/rarlinux-x64-5.3.0.tar.gz</span></span></span><br></pre></td></tr></table></figure>
+
+3.解压编译
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf rarlinux-x64-<span class="number">5.3</span>.<span class="number">0</span>.tar.gz</span><br><span class="line"><span class="keyword">cd</span> rar</span><br><span class="line"><span class="keyword">make</span> &amp;&amp; <span class="keyword">make</span> install</span><br><span class="line"><span class="keyword">cp</span> -<span class="keyword">f</span> rar_static /usr/local/bin/rar &amp;&amp; <span class="keyword">cp</span> -<span class="keyword">f</span> rar_static /usr/local/bin/unrar</span><br><span class="line"><span class="keyword">cd</span> ..</span><br><span class="line">rm -rf rar</span><br></pre></td></tr></table></figure>
+
+4.使用
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">解压：rar x filename.rar</span><br><span class="line">压缩：rar <span class="selector-tag">a</span> targetName<span class="selector-class">.rar</span> dirName</span><br></pre></td></tr></table></figure>
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.hongyangliao.com/2017/08/10/mysql/mysql导出数据库、表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -781,7 +985,7 @@ d)配置application.properties
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -792,7 +996,7 @@ d)配置application.properties
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -803,7 +1007,7 @@ d)配置application.properties
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
