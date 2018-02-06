@@ -422,16 +422,11 @@
       
         
           
-            <h4 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h4><pre><code>    项目中使用了Spring Boot,由于是微服务架构,现在不想使用Session来存储用户登录状态
-(session是基于cookie实现的)态,选择JWT来存储用户ID,作为身份认证的凭证.
-</code></pre><h4 id="JWT介绍-Json-Web-Token"><a href="#JWT介绍-Json-Web-Token" class="headerlink" title="JWT介绍(Json Web Token)"></a>JWT介绍(Json Web Token)</h4><pre><code>    Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开
-    放标准(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录场景。
-JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服
-务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于
-认证，也可被加密。
-</code></pre><h5 id="JWT构成"><a href="#JWT构成" class="headerlink" title="JWT构成"></a>JWT构成</h5><pre><code>jwt由三部分组成:头部(header),载体(payload),签名(signature),如下所示
+            <h4 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h4><p>  项目中使用了Spring Boot,由于是微服务架构,现在不想使用Session来存储用户登录状态 (session是基于cookie实现的)态,选择JWT来存储用户ID,作为身份认证的凭证.</p>
+<h4 id="JWT介绍-Json-Web-Token"><a href="#JWT介绍-Json-Web-Token" class="headerlink" title="JWT介绍(Json Web Token)"></a>JWT介绍(Json Web Token)</h4><p>Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
+<h5 id="JWT构成"><a href="#JWT构成" class="headerlink" title="JWT构成"></a>JWT构成</h5><pre><code>jwt由三部分组成:头部(header),载体(payload),签名(signature),如下所示
 </code></pre><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ<span class="number">0</span>eXAiOiJKV<span class="number">1</span>QiLCJhbGciOiJIUzI<span class="number">1</span><span class="symbol">NiJ9</span>.eyJ<span class="number">1</span>c<span class="number">2</span>VySWQiOiIxIiwibmJmIjox<span class="symbol">NTE3</span>OTEzMzY<span class="number">3</span>LCJleHAiOjE<span class="number">1</span>MTc<span class="number">5</span>MTMz<span class="symbol">Nzd9</span><span class="number">.9</span>QTv<span class="symbol">NWuwJsma84</span>AfeXK<span class="number">4</span>J<span class="meta">O9</span>ozOy<span class="number">4</span>owmZJws<span class="number">9</span>IZ<span class="number">2</span>DMAI</span><br></pre></td></tr></table></figure>
-<h6 id="头部-header"><a href="#头部-header" class="headerlink" title="头部(header)"></a>头部(header)</h6><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">'typ'</span>:<span class="string">'JWT'</span>,</span><br><span class="line">    <span class="string">'alg'</span>:<span class="string">'HS256'</span>,</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="头部-header"><a href="#头部-header" class="headerlink" title="头部(header)"></a>头部(header)</h6><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">'typ'</span>:<span class="string">'JWT'</span>,</span><br><span class="line">    <span class="string">'alg'</span>:<span class="string">'HS256'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <pre><code>头部由两部分组成,
 typ:类型
 alg:加密方式
