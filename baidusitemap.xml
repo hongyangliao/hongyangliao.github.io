@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://blog.hongyangliao.com/2018/04/27/Python/supervisor%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2018-04-28T05:00:08.940Z</lastmod>
+    <data>
+        <display>
+        <title>supervisor使用方法</title>
+        <pubTime>2018-04-27T19:10:45.000Z</pubTime>
+        
+        <tag>supervisor</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://blog.hongyangliao.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.hongyangliao.com/2018/04/03/Git/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</loc>
     <lastmod>2018-04-04T01:47:34.862Z</lastmod>
     <data>
@@ -44,6 +64,7 @@
 
     
     
+    
   <url>
     <loc>http://blog.hongyangliao.com/2017/07/09/Spring/SpringCloud%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%20%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4/</loc>
     <lastmod>2018-02-01T09:55:28.242Z</lastmod>
@@ -65,7 +86,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://blog.hongyangliao.com/2018/01/02/Spring/SpringBoot%E6%95%B4%E5%90%88Mybatis%E6%97%B6%E4%BD%BF%E7%94%A8Druid%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</loc>
@@ -148,26 +168,6 @@
 
     
   <url>
-    <loc>http://blog.hongyangliao.com/2017/08/29/Linux/Linux%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2018-02-01T09:55:28.142Z</lastmod>
-    <data>
-        <display>
-        <title>Linux常见操作</title>
-        <pubTime>2017-08-29T09:07:06.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://blog.hongyangliao.com/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.hongyangliao.com/2017/11/20/mysql/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E7%BD%AEutf-8%E7%BC%96%E7%A0%81/</loc>
     <lastmod>2018-02-01T09:55:28.142Z</lastmod>
     <data>
@@ -187,6 +187,25 @@
     </url>
 
     
+  <url>
+    <loc>http://blog.hongyangliao.com/2017/08/29/Linux/Linux%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2018-02-01T09:55:28.142Z</lastmod>
+    <data>
+        <display>
+        <title>Linux常见操作</title>
+        <pubTime>2017-08-29T09:07:06.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="http://blog.hongyangliao.com/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>http://blog.hongyangliao.com/2017/11/29/Linux/Centos6-5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85/</loc>
@@ -209,25 +228,6 @@
 
     
     
-  <url>
-    <loc>http://blog.hongyangliao.com/2017/08/10/mysql/mysql%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E8%A1%A8/</loc>
-    <lastmod>2018-02-01T09:55:28.098Z</lastmod>
-    <data>
-        <display>
-        <title>mysql导出、导入</title>
-        <pubTime>2017-08-10T10:25:18.000Z</pubTime>
-        
-        <tag>mysql</tag>
-         
-         
-           
-             
-              <breadCrumb title="mysql" url="http://blog.hongyangliao.com/categories/mysql/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://blog.hongyangliao.com/2018/01/03/Log/slf4j-logback%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</loc>
@@ -245,6 +245,26 @@
            
              
               <breadCrumb title="Log" url="http://blog.hongyangliao.com/categories/Log/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.hongyangliao.com/2017/08/10/mysql/mysql%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E8%A1%A8/</loc>
+    <lastmod>2018-02-01T09:55:28.098Z</lastmod>
+    <data>
+        <display>
+        <title>mysql导出、导入</title>
+        <pubTime>2017-08-10T10:25:18.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://blog.hongyangliao.com/categories/mysql/"/>
           
         </display>
     </data>
